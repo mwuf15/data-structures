@@ -13,10 +13,10 @@ class Queue {
   }
 
   dequeue () {
-    var newValue = this.storage[this.countFirst];
+    var toDequeue = this.storage[this.countFirst];
     delete this.storage[this.countFirst];
     this.countFirst++;
-    return newValue;
+    return toDequeue;
   }
 
   size () {

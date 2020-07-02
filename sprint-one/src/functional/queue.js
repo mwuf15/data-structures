@@ -14,10 +14,10 @@ var Queue = function() {
 
   someInstance.dequeue = function() {
 
-    var newValue = storage[countFirst];
+    var toDequeue = storage[countFirst];
     delete storage[countFirst];
     countFirst ++;
-    return newValue;
+    return toDequeue;
   };
 
   someInstance.size = function() {
