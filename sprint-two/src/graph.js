@@ -29,12 +29,9 @@ Graph.prototype.removeNode = function(node) {
     }
   }
   for (var j = 0; j < this.edges.length; j++) {
-    for (var k = 0; this.edges[j].length; k++) {
-      if (this.edges[j][k] === node) {
-        this.edges.splice(j,1);
-        j--;
-        break;
-      }
+    if (this.edges[j][0] === node || this.edges[j][1] === node) {
+      this.edges.splice(j,1);
+      j--;
     }
   }
 };
@@ -42,10 +39,8 @@ Graph.prototype.removeNode = function(node) {
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
   for (var i = 0; i < this.edges.length; i ++) {
-    for (var j = 0; j < this.edges[i].length; j++) {
-      if ((this.edges[i][j] === fromNode && this.edges[i][j+1] === toNode) || (this.edges[i][j] === toNode && this.edges[i][j+1] === fromNode)) {
-        return true;
-      }
+    if ((this.edges[i][0] === fromNode && this.edges[i][1] === toNode) || (this.edges[i][0] === toNode && this.edges[i][1] === fromNode)) {
+      return true;
     }
   }
   return false;
@@ -62,12 +57,9 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
   for (var i = 0; i < this.edges.length; i++) {
-    for (var j = 0; j < this.edges[i].length; j++) {
-      if ((this.edges[i][j] === fromNode && this.edges[i][j+1] === toNode) || (this.edges[i][j] === toNode && this.edges[i][j+1] === fromNode)){
-        this.edges.splice(i, 1);
-        i--;
-        break;
-      }
+    if ((this.edges[i][0] === fromNode && this.edges[i][1] === toNode) || (this.edges[i][0] === toNode && this.edges[i][1] === fromNode)){
+      this.edges.splice(i, 1);
+      i--;
     }
   }
 };
@@ -81,6 +73,13 @@ Graph.prototype.forEachNode = function(cb) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+addNode : O(1);
+contains : O(n);
+removeNode : O(n)
+addEdge : O(n);
+hasEdge : O(n);
+removeEdge : O(n);
+forEachNode : O(n);
  */
 
 
